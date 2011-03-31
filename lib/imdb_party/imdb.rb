@@ -36,6 +36,11 @@ module ImdbParty
       results["data"]["list"]["list"].map { |r| {:title => r["title"], :imdb_id => r["tconst"], :year => r["year"], :poster_url => (r["image"] ? r["image"]["url"] : nil)} }
     end
 
+    def bottom_100
+      results = self.class.get('/chart/bottom').parsed_response
+      results["data"]["list"]["list"].map { |r| {:title => r["title"], :imdb_id => r["tconst"], :year => r["year"], :poster_url => (r["image"] ? r["image"]["url"] : nil)} }
+    end
+
     def popular_shows
       results = self.class.get('/chart/tv').parsed_response
       results["data"]["list"].map { |r| {:title => r["title"], :imdb_id => r["tconst"], :year => r["year"], :poster_url => (r["image"] ? r["image"]["url"] : nil)} }

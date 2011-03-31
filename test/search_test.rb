@@ -57,6 +57,17 @@ class SearchTest < Test::Unit::TestCase
       end
     end
 
+    context "find bottom 100 movies" do
+      setup do
+        @movies = @imdb.bottom_100
+      end
+
+      should "be an Array of Hashes" do
+        assert_equal Array, @movies.class
+        assert_equal Hash, @movies.first.class
+      end
+    end
+
     context "find popular shows" do
       setup do
         @shows = @imdb.popular_shows
